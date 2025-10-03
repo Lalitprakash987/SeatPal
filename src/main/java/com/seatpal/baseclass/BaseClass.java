@@ -2,6 +2,7 @@ package com.seatpal.baseclass;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseClass {
@@ -10,15 +11,22 @@ public class BaseClass {
 
 	@BeforeMethod
 	public void setUp() {
-		WebDriverManager.chromedriver().setup();
 
+		// WebDriverManager.chromedriver().setup();
+		// driver = new ChromeDriver();
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\lalit\\OneDrive\\Desktop\\workspace\\SeatPal\\chromedriver\\chromedriver.exe");
 		driver = new ChromeDriver();
-
-		// Maximize window
+		driver.get("https://seatpal.co.uk/");
 		driver.manage().window().maximize();
-
-		// Optional: open default URL
-		driver.get("https://www.seatpal.com");
 	}
+
+	/*@AfterMethod
+	public void teardown() {
+		if (driver != null)
+			driver.quit();
+
+	}*/
 
 }
